@@ -6,6 +6,9 @@ use App\Entity\ExchangeRate;
 
 class ConvertCurrencyService
 {
+    /**
+     * @return array<string,mixed>
+     */
     public function convert(
         ExchangeRate $rate,
         float $calculatingRate,

@@ -29,9 +29,9 @@ class ExchangeRateRepository extends ServiceEntityRepository
         $em->flush();
     }
 
-    public function truncate()
+    public function truncate(): void
     {
-        return $this->createQueryBuilder('er')
+         $this->createQueryBuilder('er')
             ->delete()
             ->getQuery()
             ->execute()

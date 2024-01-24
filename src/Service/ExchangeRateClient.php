@@ -2,20 +2,21 @@
 
 namespace App\Service;
 
-use http\Exception\RuntimeException;
+use RuntimeException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-class ExchangeRateClient
+readonly class ExchangeRateClient
 {
     public function __construct(
-        private readonly HttpClientInterface $client,
+        private HttpClientInterface $client,
     ) {
     }
 
     /**
      * @throws TransportExceptionInterface
+     * @return array<int,array<string,mixed>>
      */
     public function fetchExchangeRates(): array
     {
