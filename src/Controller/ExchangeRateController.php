@@ -27,6 +27,8 @@ class ExchangeRateController extends AbstractController
     #[Route('/exchange-rate', name: 'app_exchange_rate', methods: ['GET', 'POST'])]
     public function index(Request $request): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
         $exchangeRates = $this->exchangeRateRepository->findAll();
         $convertedRates = [];
 
