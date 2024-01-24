@@ -21,28 +21,20 @@ class ExchangeRateRepository extends ServiceEntityRepository
         parent::__construct($registry, ExchangeRate::class);
     }
 
-//    /**
-//     * @return ExchangeRate[] Returns an array of ExchangeRate objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('e.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function store(ExchangeRate $exchangeRate): void
+    {
+        $em = $this->getEntityManager();
 
-//    public function findOneBySomeField($value): ?ExchangeRate
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        $em->persist($exchangeRate);
+        $em->flush();
+    }
+
+    public function truncate()
+    {
+        return $this->createQueryBuilder('er')
+            ->delete()
+            ->getQuery()
+            ->execute()
+        ;
+    }
 }
